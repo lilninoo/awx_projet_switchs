@@ -1,0 +1,157 @@
+---
+  - name: Configuration du VLAN 10 et 20 sur les switchs
+    ios_vlans:
+      config:
+      - name: Vlan_10
+        vlan_id: 10
+        state: active
+        shutdown: disabled
+        
+      - name: Vlan_20
+        vlan_id: 20
+        state: active
+        shutdown: enabled
+
+      - name: Vlan_30
+        vlan_id: 30
+        state: active
+        shutdown: disabled
+      state: merged
+
+
+  - name: Affectation des vlans aux interfaces
+    ios_l2_interfaces:
+      config:
+      - name: FastEthernet0/19
+        mode: access
+        access:
+          vlan: 10
+
+      - name: FastEthernet0/20
+        mode: access
+        access:
+          vlan: 10
+
+      - name: FastEthernet0/21
+        mode: access
+        access:
+          vlan: 10
+
+      - name: EthernetFastEthernet0/22
+        mode: access
+        access:
+          vlan: 10
+
+      - name: FastEthernet0/23
+        mode: trunk
+        trunk:
+          allowed_vlans: 10,30,40
+          encapsulation: dot1q
+
+      - name: FastEthernet0/24
+        mode: trunk
+        trunk:
+          allowed_vlans: 10,30,40
+          encapsulation: dot1q
+
+      - name: FastEthernet0/25
+        mode: access
+        access:
+          vlan: 20
+
+      
+  
+  - name: Configuration de  la default gateway sur les switchs
+    ios_config:
+      lines: ip default-gateway 192.168.1.1
+
+  - name: Configuration de la security des ports FastEthernet0/19
+    ios_config:
+      lines:
+      - switchport port-security
+      - switchport port-security maximum 10
+      - switchport port-security mac-address sticky
+      - switchport port-security violation shutdown
+      parents: interface FastEthernet0/19
+
+  - name: Configuration de la security du port FastEthernet0/20
+    ios_config:
+      lines:
+      - switchport port-security
+      - switchport port-security maximum 10
+      - switchport port-security mac-address sticky
+      - switchport port-security violation shutdown
+      parents: interface FastEthernet0/20
+
+  - name: Configuration de la security du port FastEthernet0/21
+    ios_config:
+      lines:
+      - switchport port-security
+      - switchport port-security maximum 10
+      - switchport port-security mac-address sticky
+      - switchport port-security violation shutdown
+      parents: interface FastEthernet0/21
+
+  - name: Configuration de la security du port FastEthernet0/22
+    ios_config:
+      lines:
+      - switchport port-security
+      - switchport port-security maximum 10
+      - switchport port-security mac-address sticky
+      - switchport port-security violation shutdown
+      parents: interface FastEthernet0/22
+
+
+  - name: Configuration de la security du port FastEthernet0/23
+    ios_config:
+      lines:
+      - switchport port-security
+      - switchport port-security maximum 10
+      - switchport port-security mac-address sticky
+      - switchport port-security violation shutdown
+      parents: interface FastEthernet0/23
+
+  - name: Configuration de la security du port FastEthernet0/24
+    ios_config:
+      lines:
+      - switchport port-security
+      - switchport port-security maximum 10
+      - switchport port-security mac-address sticky
+      - switchport port-security violation shutdown
+      parents: interface FastEthernet0/24
+
+  - name: Configuration de la security du port FastEthernet0/25
+    ios_config:
+      lines:
+      - switchport port-security
+      - switchport port-security maximum 10
+      - switchport port-security mac-address sticky
+      - switchport port-security violation shutdown
+      parents: interface FastEthernet0/25
+
+  - name: Configuration de la security du port FastEthernet0/26
+    ios_config:
+      lines:
+      - switchport port-security
+      - switchport port-security maximum 10
+      - switchport port-security mac-address sticky
+      - switchport port-security violation shutdown
+      parents: interface FastEthernet0/26             
+
+  - name: Configuration de la security du port FastEthernet0/27
+    ios_config:
+      lines:
+      - switchport port-security
+      - switchport port-security maximum 10
+      - switchport port-security mac-address sticky
+      - switchport port-security violation shutdown
+      parents: interface FastEthernet0/27
+
+  - name: Configuration de la security du port FastEthernet0/28
+    ios_config:
+      lines:
+      - switchport port-security
+      - switchport port-security maximum 10
+      - switchport port-security mac-address sticky
+      - switchport port-security violation shutdown
+      parents: interface FastEthernet0/28
