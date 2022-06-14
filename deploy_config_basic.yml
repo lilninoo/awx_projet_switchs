@@ -6,7 +6,7 @@
   
   tasks:  
     - name: Configuration du nom des hotes
-      cisco.ios.ios_config:
+      ios_config:
         lines: hostname {{ inventory_hostname }}
 
     - name: configuration du nom de domaine
