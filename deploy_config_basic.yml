@@ -44,7 +44,7 @@
 
     
     - name: crypter les passwords
-      ios_config:
+      cisco.ios.ios_config:
         lines: 
         - service password-encryption
 
