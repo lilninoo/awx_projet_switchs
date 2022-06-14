@@ -3,6 +3,7 @@
 - name: CONFIGURATION DE BASE
   hosts: all
   gather_facts: false
+  
   tasks:  
     - name: Configuration du nom des hotes
       ios_config:
